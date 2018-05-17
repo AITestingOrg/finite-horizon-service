@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: finitehorizonservice
+  data:
+    mongodb:
+      uri: mongodb://localhost/finite_type_service # Mongo database URI. When set, host and port are ignored.
+      port: 27017 # Mongo server port.
+      enabled: true # Enable Mongo repositories.
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discoveryservice:8761/eureka/
+    fetch-registry: false
