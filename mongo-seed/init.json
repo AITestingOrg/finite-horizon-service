@@ -1,0 +1,10 @@
+[
+  {
+    "_id": "genre",
+    "values": ["male", "female", "other", "nonbinary", "I rather not say"]
+  },
+  {
+    "_id": "country",
+    "values": ["United States of America", "Canada", "Mexico"]
+  }
+]
