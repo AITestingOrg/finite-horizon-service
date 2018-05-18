@@ -31,7 +31,7 @@ public class FiniteTypeCrudService {
     }
 
     public void create(FiniteType finiteType) throws ValidationFailureException {
-        final var lowerFiniteType = new FiniteType(finiteType.getTypeId().toLowerCase(), finiteType.getCases());
+        final var lowerFiniteType = new FiniteType(finiteType.getTypeId().toLowerCase(), finiteType.getValues());
         var typeId = lowerFiniteType.getTypeId();
         var existingType = finiteTypeRepository.findByTypeId(typeId);
         if (existingType.isPresent()) {
@@ -50,22 +50,22 @@ public class FiniteTypeCrudService {
         finiteTypeRepository.delete(existingType.get());
     }
 
-    public void addNewCase(String typeId, String newCase) throws NotFoundException, ValidationFailureException {
+    public void addValue(String typeId, String newValue) throws NotFoundException, ValidationFailureException {
         var existingType = finiteTypeRepository.findByTypeId(typeId.toLowerCase());
         if (!existingType.isPresent()) {
             throw new NotFoundException(String.format("Failed to find entry for type %s.",  typeId));
         }
         var finiteType = existingType.get();
-        if (finiteType.getCases().contains(newCase)) {
+        if (finiteType.getValues().contains(newValue)) {
             throw new ValidationFailureException(
-                    String.format("The case %s is already included for type %s.", newCase, typeId));
+                    String.format("The case %s is already included for type %s.", newValue, typeId));
         }
-        finiteType.getCases().add(newCase);
+        finiteType.getValues().add(newValue);
         finiteTypeRepository.save(finiteType);
     }
 
     public void update(FiniteType finiteType) throws NotFoundException {
-        final var lowerFiniteType = new FiniteType(finiteType.getTypeId().toLowerCase(), finiteType.getCases());
+        final var lowerFiniteType = new FiniteType(finiteType.getTypeId().toLowerCase(), finiteType.getValues());
         final var typeId = lowerFiniteType.getTypeId();
         final var existingType = finiteTypeRepository.findByTypeId(typeId);
         if (!existingType.isPresent()) {

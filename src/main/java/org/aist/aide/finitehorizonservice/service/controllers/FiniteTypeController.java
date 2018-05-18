@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.aist.aide.finitehorizonservice.domain.exceptions.NotFoundException;
 import org.aist.aide.finitehorizonservice.domain.exceptions.ValidationFailureException;
+import org.aist.aide.finitehorizonservice.domain.models.AdditionalValue;
 import org.aist.aide.finitehorizonservice.domain.models.FiniteType;
-import org.aist.aide.finitehorizonservice.domain.models.NewCase;
 import org.aist.aide.finitehorizonservice.domain.services.FiniteTypeCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class FiniteTypeController {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.POST)
-    public ResponseEntity<String> createFiniteType(@Valid @RequestBody FiniteType finiteType) {
+    public ResponseEntity<String> create(@Valid @RequestBody FiniteType finiteType) {
         try {
             finiteTypeCrudService.create(finiteType);
         } catch (ValidationFailureException e) {
@@ -38,8 +38,19 @@ public class FiniteTypeController {
         return new ResponseEntity<>(finiteType.getTypeId(), HttpStatus.CREATED);
     }
 
+    @RequestMapping(path = "/{typeId}")
+    public ResponseEntity<FiniteType> get(@PathVariable String typeId) {
+        FiniteType finiteType;
+        try {
+            finiteType = finiteTypeCrudService.getFiniteType(typeId);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(finiteType, HttpStatus.OK);
+    }
+
     @RequestMapping(path = "/", method = RequestMethod.PUT)
-    public ResponseEntity updateFiniteType(@Valid @RequestBody FiniteType finiteType) {
+    public ResponseEntity update(@Valid @RequestBody FiniteType finiteType) {
         try {
             finiteTypeCrudService.update(finiteType);
         } catch (NotFoundException e) {
@@ -48,24 +59,25 @@ public class FiniteTypeController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/{typeId}", method = RequestMethod.DELETE)
-    public ResponseEntity updateFiniteType(@PathVariable String typeId) {
-        try {
-            finiteTypeCrudService.delete(typeId);
-        } catch (NotFoundException e) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
     @RequestMapping(path = "/{typeId}", method = RequestMethod.PUT)
-    public ResponseEntity updateFiniteType(@PathVariable String typeId, @Valid @RequestBody NewCase newCase) {
+    public ResponseEntity update(@PathVariable String typeId,
+                                 @Valid @RequestBody AdditionalValue additionalValue) {
         try {
-            finiteTypeCrudService.addNewCase(typeId, newCase.getNewCase());
+            finiteTypeCrudService.addValue(typeId, additionalValue.getAdditionalValue());
         } catch (NotFoundException e) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         } catch (ValidationFailureException e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/{typeId}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable String typeId) {
+        try {
+            finiteTypeCrudService.delete(typeId);
+        } catch (NotFoundException e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity(HttpStatus.OK);
     }

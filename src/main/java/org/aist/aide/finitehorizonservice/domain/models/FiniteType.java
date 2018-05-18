@@ -10,22 +10,22 @@ public class FiniteType {
     private String typeId;
     @NotNull
     @NotEmpty
-    private Set<String> cases;
+    private Set<String> values;
 
-    public FiniteType(String typeId, @NotNull @NotEmpty Set<String> cases) {
+    public FiniteType(String typeId, @NotNull @NotEmpty Set<String> values) {
         this.typeId = typeId;
-        this.cases = cases;
+        this.values = values;
     }
 
     public String getTypeId() {
         return typeId;
     }
 
-    public Set<String> getCases() {
-        return cases;
+    public Set<String> getValues() {
+        return values;
     }
 
-    public void setCases(Set<String> cases) {
-        this.cases = cases;
+    public void setValues(Set<String> values) {
+        this.values = values;
     }
 }
