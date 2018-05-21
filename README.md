@@ -27,28 +27,27 @@ To run from docker:
 ### GET to api/v1/finitetype
 * Returns list of all existing finiteType.
 
-
 ### GET to api/v1/finitetype/{type}
 * Returns a single finiteType with the type and value for the given type.
 
 ### POST to api/v1/finitetype
 
-With minimum json body:
+With json body like:
 ```
 {
-    "typeId": "State",
-   	"values": ["Florida","California","New York"]
+   "typeId": "State",
+   "values": ["Florida","California","New York"]
 }
 ```
 Additional parameters: "abstraction" with a string value corresponding to the abstraction.
 
 ### PUT to api/v1/finitetype
 
-With json body:
+With json body like:
 ```
 {
-    "typeId": "State",
-   	"values": ["Florida","California","New York"]
+   "typeId": "State",
+   "values": ["Florida","California"]
 }
 ```
 
