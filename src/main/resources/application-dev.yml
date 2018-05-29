@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: finitehorizonservice
   data:
     mongodb:
       uri: mongodb://mongo/finite_type_service # Mongo database URI. When set, host and port are ignored.
@@ -9,5 +11,5 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discoveryservice:8082/eureka/
+      defaultZone: http://discoveryservice:8761/eureka/
     register-with-eureka: true

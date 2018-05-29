@@ -6,11 +6,11 @@ import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 import java.util.Optional;
-import org.aist.aide.finitehorizonservice.domain.exceptions.NotFoundException;
-import org.aist.aide.finitehorizonservice.domain.exceptions.ValidationFailureException;
 import org.aist.aide.finitehorizonservice.domain.models.FiniteType;
 import org.aist.aide.finitehorizonservice.domain.services.FiniteTypeCrudService;
 import org.aist.aide.finitehorizonservice.service.repositories.FiniteTypeRepository;
+import org.aist.aide.formexpert.common.exceptions.NotFoundException;
+import org.aist.aide.formexpert.common.exceptions.ValidationFailureException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

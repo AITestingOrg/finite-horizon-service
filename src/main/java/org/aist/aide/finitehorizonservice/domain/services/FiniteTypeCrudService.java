@@ -2,10 +2,10 @@ package org.aist.aide.finitehorizonservice.domain.services;
 
 import java.util.List;
 import java.util.logging.Logger;
-import org.aist.aide.finitehorizonservice.domain.exceptions.NotFoundException;
-import org.aist.aide.finitehorizonservice.domain.exceptions.ValidationFailureException;
 import org.aist.aide.finitehorizonservice.domain.models.FiniteType;
 import org.aist.aide.finitehorizonservice.service.repositories.FiniteTypeRepository;
+import org.aist.aide.formexpert.common.exceptions.NotFoundException;
+import org.aist.aide.formexpert.common.exceptions.ValidationFailureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
