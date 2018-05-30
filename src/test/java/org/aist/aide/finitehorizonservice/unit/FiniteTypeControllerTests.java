@@ -4,10 +4,10 @@ import static org.aist.aide.finitehorizonservice.utils.TestsConstants.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-import org.aist.aide.finitehorizonservice.domain.exceptions.NotFoundException;
-import org.aist.aide.finitehorizonservice.domain.exceptions.ValidationFailureException;
 import org.aist.aide.finitehorizonservice.domain.services.FiniteTypeCrudService;
 import org.aist.aide.finitehorizonservice.service.controllers.FiniteTypeController;
+import org.aist.aide.formexpert.common.exceptions.NotFoundException;
+import org.aist.aide.formexpert.common.exceptions.ValidationFailureException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
