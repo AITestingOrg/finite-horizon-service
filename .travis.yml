@@ -16,3 +16,5 @@ after_success:
   - export REPO=aista/finite-horizon-service
   - docker build -t $REPO:$TRAVIS_TAG -t $REPO:latest .
   - docker push $REPO
+  - docker build -t $REPO-seed:$TRAVIS_TAG -t $REPO-seed:latest ./mongo-seed
+  - docker push $REPO-seed
